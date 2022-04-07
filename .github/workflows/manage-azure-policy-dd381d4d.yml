@@ -1,0 +1,100 @@
+name: manage-azure-policy-dd381d4d
+on:
+  workflow_dispatch:
+    inputs:
+      remarks:
+        description: 'Reason for triggering the workflow run'
+        required: false
+        default: 'Updating Azure Policies'
+
+
+## Uncomment the following if you wish to automatically trigger workflow run with every commit
+#
+#  push:
+#    paths:
+#      - 'policies/Azure_Monitor_Private_Link_Scope_should_use_private_link_0fc55270-f8bf-4feb-b7b8-5e7e7eacc6a6/**'
+#      - 'policies/_Preview_Configure_system-assigned_managed_identity_to_enable_Azure_Monitor_assignments_on_VMs_17b3de92-f710-4cf4-aa55-0e7859f1ed7b/**'
+#      - 'policies/Azure_Monitor_log_profile_should_collect_logs_for_categories_write,_delete,_and_action_1a4e592a-6a6e-44a5-9814-e36264ca96e7/**'
+#      - 'policies/Linux_virtual_machines_should_have_Azure_Monitor_Agent_installed_1afdc4b6-581a-45fb-b630-f1e6051e3e7a/**'
+#      - 'policies/Azure_Monitor_Logs_clusters_should_be_encrypted_with_customer-managed_key_1f68a601-6e6d-4e42-babf-3f643a047ea2/**'
+#      - 'policies/Linux_virtual_machine_scale_sets_should_have_Azure_Monitor_Agent_installed_32ade945-311e-4249-b8a4-a549924234d7/**'
+#      - 'policies/Windows_virtual_machine_scale_sets_should_have_Azure_Monitor_Agent_installed_3672e6f7-a74d-4763-b138-fcf332042f8f/**'
+#      - 'policies/_Preview_Configure_Arc_machines_to_automatically_create_the_Security_Center_pipeline_for_Azure_Monitor_Agent_3b1a8e0a-b2e1-48be-9365-28be2fbef550/**'
+#      - 'policies/Azure_Monitor_solution_Security_and_Audit_must_be_deployed_3e596b57-105f-48a6-be97-03e9243bad6e/**'
+#      - 'policies/Azure_Monitor_should_collect_activity_logs_from_all_regions_41388f1c-2db0-4c25-95b2-35d7f5ccbfa9/**'
+#      - 'policies/Configure_Azure_Monitor_Private_Link_Scope_to_use_private_DNS_zones_437914ee-c176-4fff-8986-7e05eb971365/**'
+#      - 'policies/Configure_Windows_virtual_machine_scale_sets_to_run_Azure_Monitor_Agent_4efbd9d8-6bc6-45f6-9be2-7fe9dd5d89ff/**'
+#      - 'policies/Configure_Linux_virtual_machine_scale_sets_to_run_Azure_Monitor_Agent_with_system-assigned_managed_identity-based_authentication_56a3e4f8-649b-4fac-887e-5564d11e8d3a/**'
+#      - 'policies/Configure_Linux_virtual_machine_scale_sets_to_run_Azure_Monitor_Agent_with_user-assigned_managed_identity-based_authentication_59c3d93f-900b-4827-a8bd-562e7b956e7c/**'
+#      - 'policies/Configure_Linux_Arc-enabled_machines_to_run_Azure_Monitor_Agent_845857af-0333-4c5d-bbbc-6076697da122/**'
+#      - 'policies/_Preview_Configure_machines_to_automatically_create_the_Azure_Security_Center_pipeline_for_Azure_Monitor_Agent_8b5ad9ab-3d44-4a6e-9ac3-75b04ea5fd28/**'
+#      - 'policies/Configure_Log_Analytics_workspace_and_automation_account_to_centralize_logs_and_monitoring_8e3e61b3-0b32-22d5-4edf-55f87fdb5955/**'
+#      - 'policies/Configure_Windows_Arc-enabled_machines_to_run_Azure_Monitor_Agent_94f686d6-9a24-4e19-91f1-de937dc171a4/**'
+#      - 'policies/Log_Analytics_agent_should_be_installed_on_your_virtual_machine_scale_sets_for_Azure_Security_Center_monitoring_a3a6ea0c-e018-4933-9ef0-5aaa1501449b/**'
+#      - 'policies/Configure_Linux_virtual_machines_to_run_Azure_Monitor_Agent_with_system-assigned_managed_identity-based_authentication_a4034bc6-ae50-406d-bf76-50f4ee5a7811/**'
+#      - 'policies/Azure_Monitor_Private_Link_Scope_should_block_access_to_non_private_link_resources_a499fed8-bcc8-4195-b154-641f14743757/**'
+#      - 'policies/Log_Analytics_agent_should_be_installed_on_your_virtual_machine_for_Azure_Security_Center_monitoring_a4fe33eb-e377-4efb-ab31-0784311bc499/**'
+#      - 'policies/_Preview_Configure_Arc_machines_to_automatically_create_the_Security_Center_user-defined_pipeline_for_Azure_Monitor_Agent_aba46665-c3a7-4319-ace1-a0282deebac2/**'
+#      - 'policies/Configure_Linux_virtual_machines_to_run_Azure_Monitor_Agent_with_user-assigned_managed_identity-based_authentication_ae8a10e6-19d6-44a3-a02d-a2bdfc707742/**'
+#      - 'policies/Monitor_missing_Endpoint_Protection_in_Azure_Security_Center_af6cd1bd-1635-48cb-bde7-5b15693900b9/**'
+#      - 'policies/Configure_Azure_Monitor_Private_Link_Scope_to_block_access_to_non_private_link_resources_bec5db8e-c4e3-40f9-a545-e0bd00065c82/**'
+#      - 'policies/Windows_virtual_machines_should_have_Azure_Monitor_Agent_installed_c02729e5-e5e7-4458-97fa-2b5ad0661f28/**'
+#      - 'policies/_Preview_Configure_machines_to_automatically_create_the_Azure_Security_Center_user-defined_pipeline_for_Azure_Monitor_Agent_c15c5978-ab6e-4599-a1c3-90a7918f5371/**'
+#      - 'policies/Configure_Windows_virtual_machines_to_run_Azure_Monitor_Agent_ca817e41-e85a-4783-bc7f-dc532d36235e/**'
+#      - 'policies/Azure_Monitor_Logs_for_Application_Insights_should_be_linked_to_a_Log_Analytics_workspace_d550e854-df1a-4de9-bf44-cd894b39a95e/**'
+#      - 'policies/Configure_Azure_Monitor_Private_Link_Scopes_with_private_endpoints_e8185402-357b-4768-8058-f620bc0ae6b5/**'
+#      - 'policies/Azure_Monitor_Logs_clusters_should_be_created_with_infrastructure-encryption_enabled_(double_encryption)_ea0dfaed-95fb-448c-934e-d6e713ce393d/**'
+#      - 'policies/Windows_Arc-enabled_machines_should_have_Azure_Monitor_Agent_installed_ec621e21-8b48-403d-a549-fc9023d4747f/**'
+#      - 'policies/Linux_Arc-enabled_machines_should_have_Azure_Monitor_Agent_installed_f17d891d-ff20-46f2-bad3-9e0a5403a4d3/**'
+#      - 'policies/Saved-queries_in_Azure_Monitor_should_be_saved_in_customer_storage_account_for_logs_encryption_fa298e57-9444-42ba-bf04-86e8470e32c7/**'
+#      - .github/workflows/manage-azure-policy-dd381d4d.yml
+jobs:
+  apply-azure-policy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Login to Azure
+      uses: azure/login@v1
+      with:
+        creds: ${{secrets.AZURE_CREDENTIALS_dd381d4d}}
+        allow-no-subscriptions: true
+    - name: Create or Update Azure Policies
+      uses: azure/manage-azure-policy@v0
+      with:
+        paths: |
+          policies/Azure_Monitor_Private_Link_Scope_should_use_private_link_0fc55270-f8bf-4feb-b7b8-5e7e7eacc6a6/**
+          policies/_Preview_Configure_system-assigned_managed_identity_to_enable_Azure_Monitor_assignments_on_VMs_17b3de92-f710-4cf4-aa55-0e7859f1ed7b/**
+          policies/Azure_Monitor_log_profile_should_collect_logs_for_categories_write,_delete,_and_action_1a4e592a-6a6e-44a5-9814-e36264ca96e7/**
+          policies/Linux_virtual_machines_should_have_Azure_Monitor_Agent_installed_1afdc4b6-581a-45fb-b630-f1e6051e3e7a/**
+          policies/Azure_Monitor_Logs_clusters_should_be_encrypted_with_customer-managed_key_1f68a601-6e6d-4e42-babf-3f643a047ea2/**
+          policies/Linux_virtual_machine_scale_sets_should_have_Azure_Monitor_Agent_installed_32ade945-311e-4249-b8a4-a549924234d7/**
+          policies/Windows_virtual_machine_scale_sets_should_have_Azure_Monitor_Agent_installed_3672e6f7-a74d-4763-b138-fcf332042f8f/**
+          policies/_Preview_Configure_Arc_machines_to_automatically_create_the_Security_Center_pipeline_for_Azure_Monitor_Agent_3b1a8e0a-b2e1-48be-9365-28be2fbef550/**
+          policies/Azure_Monitor_solution_Security_and_Audit_must_be_deployed_3e596b57-105f-48a6-be97-03e9243bad6e/**
+          policies/Azure_Monitor_should_collect_activity_logs_from_all_regions_41388f1c-2db0-4c25-95b2-35d7f5ccbfa9/**
+          policies/Configure_Azure_Monitor_Private_Link_Scope_to_use_private_DNS_zones_437914ee-c176-4fff-8986-7e05eb971365/**
+          policies/Configure_Windows_virtual_machine_scale_sets_to_run_Azure_Monitor_Agent_4efbd9d8-6bc6-45f6-9be2-7fe9dd5d89ff/**
+          policies/Configure_Linux_virtual_machine_scale_sets_to_run_Azure_Monitor_Agent_with_system-assigned_managed_identity-based_authentication_56a3e4f8-649b-4fac-887e-5564d11e8d3a/**
+          policies/Configure_Linux_virtual_machine_scale_sets_to_run_Azure_Monitor_Agent_with_user-assigned_managed_identity-based_authentication_59c3d93f-900b-4827-a8bd-562e7b956e7c/**
+          policies/Configure_Linux_Arc-enabled_machines_to_run_Azure_Monitor_Agent_845857af-0333-4c5d-bbbc-6076697da122/**
+          policies/_Preview_Configure_machines_to_automatically_create_the_Azure_Security_Center_pipeline_for_Azure_Monitor_Agent_8b5ad9ab-3d44-4a6e-9ac3-75b04ea5fd28/**
+          policies/Configure_Log_Analytics_workspace_and_automation_account_to_centralize_logs_and_monitoring_8e3e61b3-0b32-22d5-4edf-55f87fdb5955/**
+          policies/Configure_Windows_Arc-enabled_machines_to_run_Azure_Monitor_Agent_94f686d6-9a24-4e19-91f1-de937dc171a4/**
+          policies/Log_Analytics_agent_should_be_installed_on_your_virtual_machine_scale_sets_for_Azure_Security_Center_monitoring_a3a6ea0c-e018-4933-9ef0-5aaa1501449b/**
+          policies/Configure_Linux_virtual_machines_to_run_Azure_Monitor_Agent_with_system-assigned_managed_identity-based_authentication_a4034bc6-ae50-406d-bf76-50f4ee5a7811/**
+          policies/Azure_Monitor_Private_Link_Scope_should_block_access_to_non_private_link_resources_a499fed8-bcc8-4195-b154-641f14743757/**
+          policies/Log_Analytics_agent_should_be_installed_on_your_virtual_machine_for_Azure_Security_Center_monitoring_a4fe33eb-e377-4efb-ab31-0784311bc499/**
+          policies/_Preview_Configure_Arc_machines_to_automatically_create_the_Security_Center_user-defined_pipeline_for_Azure_Monitor_Agent_aba46665-c3a7-4319-ace1-a0282deebac2/**
+          policies/Configure_Linux_virtual_machines_to_run_Azure_Monitor_Agent_with_user-assigned_managed_identity-based_authentication_ae8a10e6-19d6-44a3-a02d-a2bdfc707742/**
+          policies/Monitor_missing_Endpoint_Protection_in_Azure_Security_Center_af6cd1bd-1635-48cb-bde7-5b15693900b9/**
+          policies/Configure_Azure_Monitor_Private_Link_Scope_to_block_access_to_non_private_link_resources_bec5db8e-c4e3-40f9-a545-e0bd00065c82/**
+          policies/Windows_virtual_machines_should_have_Azure_Monitor_Agent_installed_c02729e5-e5e7-4458-97fa-2b5ad0661f28/**
+          policies/_Preview_Configure_machines_to_automatically_create_the_Azure_Security_Center_user-defined_pipeline_for_Azure_Monitor_Agent_c15c5978-ab6e-4599-a1c3-90a7918f5371/**
+          policies/Configure_Windows_virtual_machines_to_run_Azure_Monitor_Agent_ca817e41-e85a-4783-bc7f-dc532d36235e/**
+          policies/Azure_Monitor_Logs_for_Application_Insights_should_be_linked_to_a_Log_Analytics_workspace_d550e854-df1a-4de9-bf44-cd894b39a95e/**
+          policies/Configure_Azure_Monitor_Private_Link_Scopes_with_private_endpoints_e8185402-357b-4768-8058-f620bc0ae6b5/**
+          policies/Azure_Monitor_Logs_clusters_should_be_created_with_infrastructure-encryption_enabled_(double_encryption)_ea0dfaed-95fb-448c-934e-d6e713ce393d/**
+          policies/Windows_Arc-enabled_machines_should_have_Azure_Monitor_Agent_installed_ec621e21-8b48-403d-a549-fc9023d4747f/**
+          policies/Linux_Arc-enabled_machines_should_have_Azure_Monitor_Agent_installed_f17d891d-ff20-46f2-bad3-9e0a5403a4d3/**
+          policies/Saved-queries_in_Azure_Monitor_should_be_saved_in_customer_storage_account_for_logs_encryption_fa298e57-9444-42ba-bf04-86e8470e32c7/**
